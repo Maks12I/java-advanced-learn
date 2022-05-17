@@ -1,0 +1,12 @@
+server:
+  port: ${server_port:8080}
+  servlet:
+    context-path: /api
+spring:
+  profiles:
+    active: test
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+

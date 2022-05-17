@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+    <changeSet id="create-tables" author="maks12i" context="prod,test">
+        <createTable tableName="table_of_clients">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_table_of_clients"/>
+            </column>
+            <column name="first_name" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="third_name" type="VARCHAR(32)"/>
+            <column name="gender" type="VARCHAR(6)"/>
+            <column name="birth_date" type="date"/>
+            <column name="contact_number" type="VARCHAR(20)">
+                <constraints unique="true"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="sign_up_date" type="date"/>
+            <column name="delete_date" type="date"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="insert-data-into-test" author="maks12i" context="test">
+        <insert tableName="table_of_clients">
+            <column name="id" value="1"/>
+            <column name="first_name" value="Александр"/>
+            <column name="last_name" value="Романов"/>
+            <column name="third_name" value="Владимирович"/>
+            <column name="gender" value="MALE"/>
+            <column name="birth_date" valueDate="2000-07-04"/>
+            <column name="contact_number" value="89997776655"/>
+            <column name="email" value="учфьзду@domain.org"/>
+            <column name="sign_up_date" valueDate="2010-05-01"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="create-event-table" author="maks12i">
+        <createTable tableName="event_table">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_event_table"/>
+            </column>
+            <column name="client_id" type="bigint"/>
+            <column name="event" type="VARCHAR(6)"/>
+            <column name="event_date" type="date"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
